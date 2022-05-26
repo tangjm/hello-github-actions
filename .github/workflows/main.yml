@@ -1,0 +1,30 @@
+# 'name' specifies the workflow name
+name: A workflow for my Hello world file
+
+# 'on' specifies the type of event to listen for and whose occurence will trigger the workflow
+on: push
+
+# A Github Workflow comprises one or more jobs
+# 'jobs' is the base component of a Github workflow run
+jobs:
+
+  # 'build' specifies the identifier of this job
+  build: 
+  
+    # 'name' is the name of this job
+    name: Hello world action
+    
+    runs-on: ubuntu-latest
+    
+    # 'steps' is a linear sequence of operations that comprise this job
+    steps:
+    
+      # checkout@v1 is a community action that lets the workflow access contents of the repo
+      - uses: actions/checkout@v1
+      
+      # './action-a' is the relative path to our first action
+      - uses: ./action-a
+      
+        # 'with' is used to specify input variables available to your action at runtime
+        with:
+          MY_NAME: "Mona"
